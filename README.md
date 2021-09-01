@@ -8,3 +8,5 @@
 - [x] Ip header - IP addresses + TTL + protocol + version
 
 - [x] TCP header - ports + sequence number
+
+- [ ] HTTP traffic
