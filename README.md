@@ -2,14 +2,11 @@
 *Simple packet analyzer on the making...*
 
 ## Contents
-- pye.py 
+- pye.py, python script analyzing packets in headers.
 
-python script analyzing packets in headers.
+- sniffing.py, python script capturing packets.
 
-- sniffing.py
-
-python script capturing packets.
-
+## Implementation
 Capture and Analyze packets in:
 - [x] Ethernet Header
 - [x] Ip Header
@@ -18,14 +15,14 @@ Capture and Analyze packets in:
 - [ ] HTTP Header
 
 ## Run Sript 
-Install following dependecies:
+Install following dependencies:
 ```python
 pip install socket
 pip install struct
 pip install binascii
-pip install pye.py
+pip install pye
 ```
-Run sniffing.py with administrator privilages:
+Run sniffing.py with administrator privileges:
 ```python
 python sniffing.py
 ```
