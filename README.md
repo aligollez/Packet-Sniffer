@@ -1,19 +1,31 @@
 # Packet-Sniffer
-*Simple packet sniffer on the making*
+*Simple packet analyzer on the making...*
 
-## Capture and Analyze packets in:
+## Contents
+- pye.py 
 
-- [x] Ethernet header - mac address + protocol type
+python script analyzing packets in headers.
 
+- sniffing.py
+
+python script capturing packets.
+
+Capture and Analyze packets in:
+- [x] Ethernet Header
+- [x] Ip Header
+- [x] TCP Header
+- [ ] UDP Header
+- [ ] HTTP Header
+
+## Run Sript 
+Install following dependecies:
+```python
+pip install socket
+pip install struct
+pip install binascii
+pip install pye.py
 ```
-  ---------------------------------------------
-  |              Ethernet Header              |
-  |  Dest Mac Addr | Source Mac Addr |  Type  |
-  ---------------------------------------------
+Run sniffing.py with administrator privilages:
+```python
+python sniffing.py
 ```
-
-- [x] Ip header - IP addresses + TTL + protocol + version
-
-- [x] TCP header - ports + sequence number
-
-- [ ] HTTP traffic
