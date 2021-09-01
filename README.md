@@ -8,7 +8,7 @@
 ```
   ---------------------------------------------
   |              Ethernet Header              |
-  |  Dest Mac Addr |  Source Mac Addr | Type  |
+  |  Dest Mac Addr | Source Mac Addr |  Type  |
   ---------------------------------------------
 ```
 
