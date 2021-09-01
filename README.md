@@ -1,10 +1,10 @@
 # Packet-Sniffer
-Simple packet sniffer on the making
+*Simple packet sniffer on the making*
 
-Capture and Analyze packets in:
+##Capture and Analyze packets in:
 
-Ethernet header - mac address + protocol type
+- [x] Ethernet header - mac address + protocol type
 
-Ip header - IP addresses + TTL + protocol + version
+- [x] Ip header - IP addresses + TTL + protocol + version
 
-TCP header - ports + sequence number
+- [x] TCP header - ports + sequence number
