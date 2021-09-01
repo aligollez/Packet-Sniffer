@@ -14,7 +14,7 @@ Capture and Analyze packets in:
 - [ ] UDP Header
 - [ ] HTTP Header
 
-## Run Sript 
+## Run Script 
 Install following dependencies:
 ```python
 pip install socket
