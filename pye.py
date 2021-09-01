@@ -10,7 +10,9 @@ class unpack:
     # Ethernet Header
     def eth_header(self, data):
 
-        # format - 6s=string type for source/destination MAC addresses - H=unsigned short for ethernet protocol type
+        # format
+        # 6s - (string) for source/destination MAC addresses
+        # H - (unsigned short) for ethernet protocol type
         header = struct.unpack("!6s6sH",data)
 
         destination_mac = binascii.hexlify(header[0])
@@ -23,7 +25,12 @@ class unpack:
     # IP Header
     def ip_header(self, data):
 
-        # format - B ttl/protocol - H checksum - 4s=string ips
+        # format
+        # BB - (unsigned char) for version + traffic class
+        # HHH - (unsigned short) for total length + id + offset
+        # BB - (unsigned char) for ttl + protocol
+        # H - (unsigned short) for checksum
+        # 4s4s - (string) IPs
         header = struct.unpack("!BBHHHBBH4s4s", data)
 
         version = header[0]
@@ -38,7 +45,11 @@ class unpack:
     # TCP header
     def tcp_header(self, data):
 
-        # format - H=unsigned short for ports - L=long int seq/ack number - B tcp_flag/offset - H window/checksum/urgent
+        # format
+        # HH - (unsigned short) for ports
+        # LL - (long int) for sequence number + acknowledgement number
+        # BB - (unsigned char) for tcp flag + offset
+        # HHH - (unsigned short) for window + checksum + urgent pointer
         header = struct.unpack("!HHLLBBHHH", data)
 
         source_port = header[0]
