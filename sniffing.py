@@ -4,9 +4,7 @@ from datetime import datetime
 
 # run with administrator privilages
 
-# - not detecting os info
-
-now = datetime.now()
+now = datetime.now()   # timestamp
 
 # Create socket to capture packets
 print("\nCreating socket...")
@@ -19,7 +17,8 @@ print("\n", now.strftime("%d/%m/%Y %H:%M:%S"), "Receiving packets...")
 
 while True:
 
-    packet = sock.recvfrom(8000) # get data from socket
+    print("\n-------------------------------")
+    packet = sock.recvfrom(65565) # get data from socket !buffer size = 65565
     unpack = pye.unpack() # unpuck received data to get headers
 
     # Ethernet header
@@ -34,4 +33,13 @@ while True:
     print("\n>> ----- TCP Header -----")
     unpack.tcp_header(packet[0][14:34])
 
-    # HTTP header
+    # UDP header
+    print("\n>> ----- UDP Header -----")
+    unpack.udp_header(packet[0][14:22])
+
+    # ICMP header
+    print("\n>> ----- ICMP header -----")
+    unpack.icmp_header(packet[0][14:18])
+
+
+

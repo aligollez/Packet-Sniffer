@@ -15,8 +15,10 @@ class unpack:
         # H - (unsigned short) for ethernet protocol type
         header = struct.unpack("!6s6sH",data)
 
-        destination_mac = binascii.hexlify(header[0])
-        source_mac = binascii.hexlify(header[1])
+        destination_mac = (binascii.hexlify(header[0])).decode('utf-8')
+        destination_mac = ':'.join(destination_mac[i:i+2] for i in range(0,12,2)) # mac address format
+        source_mac = (binascii.hexlify(header[1])).decode('utf-8')
+        source_mac = ':'.join(source_mac[i:i+2] for i in range(0,12,2))
         eth_protocol = header[2]
         #destimation_mac = "%2x:%2x:%2x:%2x:%2x:%2x" % struct.unpack("BBBBBB",destination_mac) # Mac address format
         print("Destination Mac : ",destination_mac,"\nSource Mac : ",source_mac,"\nProtocol Type : ",eth_protocol)
@@ -40,7 +42,7 @@ class unpack:
         ttl = header[5]
         protocol = header[6]
         checksum = header[7]
-        source_ip = socket.inet_ntoa(header[8])
+        source_ip = socket.inet_ntoa(header[8])  # ip address format
         destination_ip = socket.inet_ntoa(header[9])
 
         print("Version : ",version, "\nTOS : ",tos, "\nTotal length : ",length, "\nIdentification : ",id, "\nFragment Offset : ",offset,
@@ -72,3 +74,29 @@ class unpack:
         "\nChecksum : ",checksum,"\nUrgent Pointer : ",urgent)
 
     # UDP header
+    def udp_header(self, data):
+
+        # format
+        # H - (unsigned short) ports + length + checksum
+        header = struct.unpack('!HHHH', data)
+
+        source_port = header[0]
+        destination_port = header[1]
+        length = header[2]
+        checksum = header[3]
+
+        print("Source Port : ",source_port,"\nDestination Port : ",destination_port,"\nLength : ",length,"\nCheckSum : ",checksum)
+
+    # ICMP header
+    def icmp_header(self, data):
+
+        # format
+        # B - (unsigned char) type + code
+        # H - (unsigned short) checksum
+        header  =struct.unpack('!BBH', data)
+
+        icmp_type = header[0]
+        code = header[1]
+        checksum = header[2]
+
+        print("ICMP Type : ",icmp_type,"\nCode : ",code,"\nCheckSum : ",checksum)
