@@ -11,8 +11,8 @@ Capture and Analyze packets in:
 - [x] Ethernet Header
 - [x] Ip Header
 - [x] TCP Header
-- [ ] UDP Header
-- [ ] ICMP Header
+- [x] UDP Header
+- [x] ICMP Header
 - [ ] HTTP Header
 
 ## Run Script 
