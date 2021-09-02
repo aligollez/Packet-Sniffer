@@ -12,6 +12,7 @@ Capture and Analyze packets in:
 - [x] Ip Header
 - [x] TCP Header
 - [ ] UDP Header
+- [ ] ICMP Header
 - [ ] HTTP Header
 
 ## Run Script 
