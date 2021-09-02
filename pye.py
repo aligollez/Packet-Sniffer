@@ -18,9 +18,8 @@ class unpack:
         destination_mac = binascii.hexlify(header[0])
         source_mac = binascii.hexlify(header[1])
         eth_protocol = header[2]
-
-        data = {"Destination Mac" : destination_mac, "Source Mac" : source_mac, "Protocol Type" : eth_protocol}
-        return data
+        #destimation_mac = "%2x:%2x:%2x:%2x:%2x:%2x" % struct.unpack("BBBBBB",destination_mac) # Mac address format
+        print("Destination Mac : ",destination_mac,"\nSource Mac : ",source_mac,"\nProtocol Type : ",eth_protocol)
 
     # IP Header
     def ip_header(self, data):
@@ -44,10 +43,9 @@ class unpack:
         source_ip = socket.inet_ntoa(header[8])
         destination_ip = socket.inet_ntoa(header[9])
 
-        data = {"Version" : version, "TOS" : tos, "Total length" : length, "Identification" : id, "Fragment Offset" : offset,
-         "Time-To-Live" : ttl, "Protocol" : protocol, "Header CheckSum" : checksum, "Source IP Address" : source_ip, 
-         "Destination IP Address" : destination_ip}
-        return data
+        print("Version : ",version, "\nTOS : ",tos, "\nTotal length : ",length, "\nIdentification : ",id, "\nFragment Offset : ",offset,
+        "\nTime-To-Live : ",ttl, "\nProtocol : ",protocol, "\nHeader CheckSum : ",checksum, "\nSource IP Address : ",source_ip,
+        "\nDestination IP Address : ",destination_ip)
 
     # TCP header
     def tcp_header(self, data):
@@ -69,7 +67,8 @@ class unpack:
         checksum = header[7]
         urgent = header[8]
 
-        data = {"Source Port" : source_port, "Destination Port" : destination_port, "Sequence Number" : sequence_number,
-        "Acknowledge Number" : ack_number, "Offset" : offset, "TCP flag" : tcp_flag, "Window Size" : window, "Checksum" : checksum,
-        "Urgent Pointer" : urgent}
-        return data
+        print("Source Port : ",source_port, "\nDestination Port: ",destination_port, "\nSequence Number : ",sequence_number,
+        "\nAcknowledge Number : ",ack_number, "\nOffset : ",offset, "\nTCP flag : ",tcp_flag, "\nWindow Size : ",window,
+        "\nChecksum : ",checksum,"\nUrgent Pointer : ",urgent)
+
+    # UDP header
