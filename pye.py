@@ -60,7 +60,7 @@ class unpack:
         # format
         # HH - (unsigned short) for ports
         # LL - (long int) for sequence number + acknowledgement number
-        # BB - (unsigned char) for tcp flag + offset
+        # H - (unsigned char) for offset
         # HHH - (unsigned short) for window + checksum + urgent pointer
         header = struct.unpack("!HHLLHHHH", data)
 
@@ -85,7 +85,7 @@ class unpack:
     def udp_header(self, data):
 
         # format
-        # H - (unsigned short) ports + length + checksum
+        # HHHH - (unsigned short) ports + length + checksum
         header = struct.unpack('!HHHH', data)
 
         source_port = header[0]
@@ -99,7 +99,7 @@ class unpack:
     def icmp_header(self, data):
 
         # format
-        # B - (unsigned char) type + code
+        # BB - (unsigned char) type + code
         # H - (unsigned short) checksum
         header  =struct.unpack('!BBH', data)
 
