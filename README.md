@@ -9,11 +9,11 @@
 ## Implementation
 Capture and Analyze packets in:
 - [x] Ethernet Header
-- [x] Ip Header
+- [x] IP Header
 - [x] TCP Header
+- [x] HTTP Header
 - [x] UDP Header
 - [x] ICMP Header
-- [ ] HTTP Header
 
 ## Run Script 
 Install following dependencies:
