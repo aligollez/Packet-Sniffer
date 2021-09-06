@@ -20,7 +20,8 @@ class unpack:
         source_mac = (binascii.hexlify(header[1])).decode('utf-8')
         source_mac = ':'.join(source_mac[i:i+2] for i in range(0,12,2))
         eth_protocol = header[2]
-        #destimation_mac = "%2x:%2x:%2x:%2x:%2x:%2x" % struct.unpack("BBBBBB",destination_mac) # Mac address format
+        data = header[14:]
+
         print("Destination Mac : ",destination_mac,"\nSource Mac : ",source_mac,"\nProtocol Type : ",eth_protocol)
 
     # IP Header
@@ -34,7 +35,7 @@ class unpack:
         # 4s4s - (string) IPs
         header = struct.unpack("!BBHHHBBH4s4s", data)
 
-        version = header[0]
+        version = header[0] >> 4
         tos = header[1]
         length = header[2]
         id = header[3]
@@ -44,10 +45,14 @@ class unpack:
         checksum = header[7]
         source_ip = socket.inet_ntoa(header[8])  # ip address format
         destination_ip = socket.inet_ntoa(header[9])
+        header_length = ((header[0] >> 4) & 15) * 4 # header length
+        data = header[header_length:]
 
         print("Version : ",version, "\nTOS : ",tos, "\nTotal length : ",length, "\nIdentification : ",id, "\nFragment Offset : ",offset,
         "\nTime-To-Live : ",ttl, "\nProtocol : ",protocol, "\nHeader CheckSum : ",checksum, "\nSource IP Address : ",source_ip,
         "\nDestination IP Address : ",destination_ip)
+
+        return protocol # return protocol TCP, UDP, ICMP + data
 
     # TCP header
     def tcp_header(self, data):
@@ -57,21 +62,24 @@ class unpack:
         # LL - (long int) for sequence number + acknowledgement number
         # BB - (unsigned char) for tcp flag + offset
         # HHH - (unsigned short) for window + checksum + urgent pointer
-        header = struct.unpack("!HHLLBBHHH", data)
+        header = struct.unpack("!HHLLHHHH", data)
 
         source_port = header[0]
         destination_port = header[1]
         sequence_number = header[2]
         ack_number = header[3]
         offset = header[4]
-        tcp_flag = header[5]
-        window = header[6]
-        checksum = header[7]
-        urgent = header[8]
+        window = header[5]
+        checksum = header[6]
+        urgent = header[7]
+        offset_length = (offset >> 12) * 4
+        data = header[offset_length:]
 
         print("Source Port : ",source_port, "\nDestination Port: ",destination_port, "\nSequence Number : ",sequence_number,
-        "\nAcknowledge Number : ",ack_number, "\nOffset : ",offset, "\nTCP flag : ",tcp_flag, "\nWindow Size : ",window,
+        "\nAcknowledge Number : ",ack_number, "\nOffset : ",offset, "\nWindow Size : ",window,
         "\nChecksum : ",checksum,"\nUrgent Pointer : ",urgent)
+
+        return source_port, destination_port, data
 
     # UDP header
     def udp_header(self, data):
