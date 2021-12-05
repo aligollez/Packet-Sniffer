@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: 3.8
       - name: install dependecies
-        run: pip install socket |
+        run: pip install socket <pkg> |
              pip install struct | 
              pip install binascii | 
              pip install pye
