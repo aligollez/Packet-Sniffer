@@ -17,9 +17,9 @@ jobs:
         with:
           python-version: 3.8
       - name: install dependecies
-        run: pip install socket <pkg> |
-             pip install struct | 
-             pip install binascii | 
-             pip install pye
+        run: pip3 install socket |
+             pip3 install struct | 
+             pip3 install binascii | 
+             pip3 install pye
       - name: run script
         run: sudo python sniffing.py
