@@ -8,7 +8,7 @@ now = datetime.now()   # timestamp
 
 # Create socket to capture packets
 print("\nCreating socket...")
-sock = socket.socket(socket.AF_INET,socket.SOCK_RAW,socket.IPPROTO_IP)
+sock = socket.socket(socket.AF_PACKET,socket.SOCK_RAW,socket.IPPROTO_IP)
 sock.bind(("127.0.0.1",0))
 sock.setsockopt(socket.IPPROTO_IP,socket.IP_HDRINCL,1)
 sock.ioctl(socket.SIO_RCVALL,socket.RCVALL_ON)
