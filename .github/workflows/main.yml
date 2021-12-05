@@ -17,4 +17,4 @@ jobs:
         with:
           python-version: 3.8
       - name: run script
-        run: python sniffing.py
+        run: sudo python sniffing.py
