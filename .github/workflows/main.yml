@@ -1,0 +1,20 @@
+name: python script
+
+on: 
+  [push]
+  #schedule:
+        #- cron: "* * * * *" #run every minute
+        
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: check content
+        uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: run script
+        run: python sniffing.py
